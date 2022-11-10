@@ -1,15 +1,6 @@
 package com.binance.api.client;
 
-import com.binance.api.client.domain.account.Account;
-import com.binance.api.client.domain.account.DepositAddress;
-import com.binance.api.client.domain.account.DepositHistory;
-import com.binance.api.client.domain.account.NewOrder;
-import com.binance.api.client.domain.account.NewOrderResponse;
-import com.binance.api.client.domain.account.Order;
-import com.binance.api.client.domain.account.Trade;
-import com.binance.api.client.domain.account.TradeHistoryItem;
-import com.binance.api.client.domain.account.WithdrawHistory;
-import com.binance.api.client.domain.account.WithdrawResult;
+import com.binance.api.client.domain.account.*;
 import com.binance.api.client.domain.account.request.AllOrdersRequest;
 import com.binance.api.client.domain.account.request.CancelOrderRequest;
 import com.binance.api.client.domain.account.request.CancelOrderResponse;
@@ -190,7 +181,7 @@ public interface BinanceApiAsyncRestClient {
    * @param orderStatusRequest order status request parameters
    * @param callback the callback that handles the response
    */
-  void getOrderStatus(OrderStatusRequest orderStatusRequest, BinanceApiCallback<Order> callback);
+  void getOrderStatus(OrderStatusRequest orderStatusRequest, BinanceApiCallback<TkoResponse<Order>> callback);
 
   /**
    * Cancel an active order (asynchronous).
@@ -206,7 +197,7 @@ public interface BinanceApiAsyncRestClient {
    * @param orderRequest order request parameters
    * @param callback the callback that handles the response
    */
-  void getOpenOrders(OrderRequest orderRequest, BinanceApiCallback<List<Order>> callback);
+  void getOpenOrders(OrderRequest orderRequest, BinanceApiCallback<TkoResponse<Orders>> callback);
 
   /**
    * Get all account orders; active, canceled, or filled.

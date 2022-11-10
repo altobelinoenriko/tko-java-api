@@ -32,7 +32,7 @@ public class BinanceApiMarginRestClientImpl implements BinanceApiMarginRestClien
     }
 
     @Override
-    public List<Order> getOpenOrders(OrderRequest orderRequest) {
+    public TkoResponse<List<Order>> getOpenOrders(OrderRequest orderRequest) {
         return executeSync(binanceApiService.getOpenMarginOrders(orderRequest.getSymbol(), orderRequest.getRecvWindow(),
                 orderRequest.getTimestamp()));
     }

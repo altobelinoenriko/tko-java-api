@@ -164,7 +164,7 @@ public interface BinanceApiRestClient {
    *
    * @return an order
    */
-  Order getOrderStatus(OrderStatusRequest orderStatusRequest);
+  TkoResponse<Order> getOrderStatus(OrderStatusRequest orderStatusRequest);
 
   /**
    * Cancel an active order.
@@ -179,7 +179,7 @@ public interface BinanceApiRestClient {
    * @param orderRequest order request parameters
    * @return a list of all account open orders on a symbol.
    */
-  List<Order> getOpenOrders(OrderRequest orderRequest);
+  TkoResponse<Orders> getOpenOrders(OrderRequest orderRequest);
 
   /**
    * Get all account orders; active, canceled, or filled.

@@ -4,16 +4,7 @@ import com.binance.api.client.BinanceApiAsyncRestClient;
 import com.binance.api.client.BinanceApiCallback;
 import com.binance.api.client.config.BinanceApiConfig;
 import com.binance.api.client.constant.BinanceApiConstants;
-import com.binance.api.client.domain.account.Account;
-import com.binance.api.client.domain.account.DepositAddress;
-import com.binance.api.client.domain.account.DepositHistory;
-import com.binance.api.client.domain.account.NewOrder;
-import com.binance.api.client.domain.account.NewOrderResponse;
-import com.binance.api.client.domain.account.Order;
-import com.binance.api.client.domain.account.Trade;
-import com.binance.api.client.domain.account.TradeHistoryItem;
-import com.binance.api.client.domain.account.WithdrawHistory;
-import com.binance.api.client.domain.account.WithdrawResult;
+import com.binance.api.client.domain.account.*;
 import com.binance.api.client.domain.account.request.AllOrdersRequest;
 import com.binance.api.client.domain.account.request.CancelOrderRequest;
 import com.binance.api.client.domain.account.request.CancelOrderResponse;
@@ -156,10 +147,9 @@ public class BinanceApiAsyncRestClientImpl implements BinanceApiAsyncRestClient 
   // Account endpoints
 
   @Override
-  public void getOrderStatus(OrderStatusRequest orderStatusRequest, BinanceApiCallback<Order> callback) {
+  public void getOrderStatus(OrderStatusRequest orderStatusRequest, BinanceApiCallback<TkoResponse<Order>> callback) {
     binanceApiService.getOrderStatus(orderStatusRequest.getSymbol(),
-        orderStatusRequest.getOrderId(), orderStatusRequest.getOrigClientOrderId(),
-        orderStatusRequest.getRecvWindow(), orderStatusRequest.getTimestamp()).enqueue(new BinanceApiCallbackAdapter<>(callback));
+        orderStatusRequest.getOrderId()).enqueue(new BinanceApiCallbackAdapter<>(callback));
   }
 
   @Override
@@ -170,7 +160,7 @@ public class BinanceApiAsyncRestClientImpl implements BinanceApiAsyncRestClient 
   }
 
   @Override
-  public void getOpenOrders(OrderRequest orderRequest, BinanceApiCallback<List<Order>> callback) {
+  public void getOpenOrders(OrderRequest orderRequest, BinanceApiCallback<TkoResponse<Orders>> callback) {
     binanceApiService.getOpenOrders(orderRequest.getSymbol(),
         orderRequest.getRecvWindow(), orderRequest.getTimestamp()).enqueue(new BinanceApiCallbackAdapter<>(callback));
   }

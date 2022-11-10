@@ -142,10 +142,9 @@ public class BinanceApiRestClientImpl implements BinanceApiRestClient {
 	// Account endpoints
 
 	@Override
-	public Order getOrderStatus(OrderStatusRequest orderStatusRequest) {
+	public TkoResponse<Order> getOrderStatus(OrderStatusRequest orderStatusRequest) {
 		return executeSync(binanceApiService.getOrderStatus(orderStatusRequest.getSymbol(),
-				orderStatusRequest.getOrderId(), orderStatusRequest.getOrigClientOrderId(),
-				orderStatusRequest.getRecvWindow(), orderStatusRequest.getTimestamp()));
+				orderStatusRequest.getOrderId()));
 	}
 
 	@Override
@@ -157,7 +156,7 @@ public class BinanceApiRestClientImpl implements BinanceApiRestClient {
 	}
 
 	@Override
-	public List<Order> getOpenOrders(OrderRequest orderRequest) {
+	public TkoResponse<Orders> getOpenOrders(OrderRequest orderRequest) {
 		return executeSync(binanceApiService.getOpenOrders(orderRequest.getSymbol(), orderRequest.getRecvWindow(),
 				orderRequest.getTimestamp()));
 	}

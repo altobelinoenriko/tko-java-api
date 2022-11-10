@@ -33,7 +33,7 @@ public interface BinanceApiAsyncMarginRestClient {
    * @param orderRequest order request parameters
    * @param callback the callback that handles the response
    */
-  void getOpenOrders(OrderRequest orderRequest, BinanceApiCallback<List<Order>> callback);
+  void getOpenOrders(OrderRequest orderRequest, BinanceApiCallback<TkoResponse<List<Order>>> callback);
 
   /**
    * Send in a new margin order (async).

@@ -40,7 +40,7 @@ public class BinanceApiAsyncMarginRestClientImpl implements BinanceApiAsyncMargi
     }
 
     @Override
-    public void getOpenOrders(OrderRequest orderRequest, BinanceApiCallback<List<Order>> callback) {
+    public void getOpenOrders(OrderRequest orderRequest, BinanceApiCallback<TkoResponse<List<Order>>> callback) {
         binanceApiService.getOpenMarginOrders(orderRequest.getSymbol(), orderRequest.getRecvWindow(),
                 orderRequest.getTimestamp()).enqueue(new BinanceApiCallbackAdapter<>(callback));
     }

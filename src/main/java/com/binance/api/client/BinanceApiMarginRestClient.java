@@ -20,7 +20,7 @@ public interface BinanceApiMarginRestClient {
      *
      * @param orderRequest order request parameters
      */
-    List<Order> getOpenOrders(OrderRequest orderRequest);
+    TkoResponse<List<Order>> getOpenOrders(OrderRequest orderRequest);
 
     /**
      * Send in a new margin order.

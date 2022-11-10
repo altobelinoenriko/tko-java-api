@@ -6,6 +6,7 @@ import com.binance.api.client.domain.TimeInForce;
 import com.binance.api.client.domain.account.MarginNewOrderResponse;
 import com.binance.api.client.domain.account.NewOrderResponseType;
 import com.binance.api.client.domain.account.Order;
+import com.binance.api.client.domain.account.TkoResponse;
 import com.binance.api.client.domain.account.request.CancelOrderRequest;
 import com.binance.api.client.domain.account.request.CancelOrderResponse;
 import com.binance.api.client.domain.account.request.OrderRequest;
@@ -26,7 +27,7 @@ public class MarginOrdersExample {
         BinanceApiMarginRestClient client = factory.newMarginRestClient();
 
         // Getting list of open orders
-        List<Order> openOrders = client.getOpenOrders(new OrderRequest("LINKETH"));
+        TkoResponse<List<Order>> openOrders = client.getOpenOrders(new OrderRequest("LINKETH"));
         System.out.println(openOrders);
 
         // Get status of a particular order
