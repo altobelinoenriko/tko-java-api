@@ -1,25 +1,16 @@
 package com.binance.api.client.domain.account;
 
-import com.binance.api.client.constant.BinanceApiConstants;
 import com.binance.api.client.domain.OrderSide;
 import com.binance.api.client.domain.OrderStatus;
 import com.binance.api.client.domain.OrderType;
 import com.binance.api.client.domain.TimeInForce;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * Trade order information.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Order {
-
-  /**
-   * Symbol that the order was put on.
-   */
-  private String symbol;
-
   /**
    * Order id.
    */
@@ -28,7 +19,37 @@ public class Order {
   /**
    * Client order id.
    */
-  private String clientOrderId;
+  private String clientId;
+
+  /**
+   * Binance order id.
+   */
+  private Long bOrderId;
+
+  /**
+   * Binance client order id.
+   */
+  private String bClientId;
+
+  /**
+   * Binance order LIST id.
+   */
+  private String bOrderListId;
+
+  /**
+   * Symbol that the order was put on.
+   */
+  private String symbol;
+  private String symbolType;
+  /**
+   * Type of order.
+   */
+  private OrderType type;
+
+  /**
+   * Buy/Sell order side.
+   */
+  private OrderSide side;
 
   /**
    * Price.
@@ -41,14 +62,19 @@ public class Order {
   private String origQty;
 
   /**
-   * Original quantity.
+   * Original quote order quantity.
+   */
+  private String origQuoteOrderQty;
+
+  /**
+   * Executed quantity.
    */
   private String executedQty;
 
   /**
-   * Order status.
+   * Executed quote quantity.
    */
-  private OrderStatus status;
+  private String executedQuoteQty;
 
   /**
    * Time in force to indicate how long will the order remain active.
@@ -56,24 +82,9 @@ public class Order {
   private TimeInForce timeInForce;
 
   /**
-   * Type of order.
-   */
-  private OrderType type;
-
-  /**
-   * Buy/Sell order side.
-   */
-  private OrderSide side;
-
-  /**
    * Used with stop orders.
    */
   private String stopPrice;
-
-  /**
-   * Used with stop orders.
-   */
-  private String stopLimitPrice;
 
   /**
    * Used with iceberg orders.
@@ -81,38 +92,14 @@ public class Order {
   private String icebergQty;
 
   /**
-   * Order timestamp.
+   * Order status.
    */
-  private long time;
+  private OrderStatus status;
 
   /**
-   * Used to calculate the average price
+   * Order creation time.
    */
-  private String cummulativeQuoteQty;
-
-  /**
-   * Update timestamp.
-   */
-  private long updateTime;
-
-  /**
-   * Is working.
-   */
-  @JsonProperty("isWorking")
-  private boolean working;
-
-  /**
-   * Original quote order quantity.
-   */
-  private String origQuoteOrderQty;
-
-  public String getSymbol() {
-    return symbol;
-  }
-
-  public void setSymbol(String symbol) {
-    this.symbol = symbol;
-  }
+  private long createTime;
 
   public Long getOrderId() {
     return orderId;
@@ -122,52 +109,52 @@ public class Order {
     this.orderId = orderId;
   }
 
-  public String getClientOrderId() {
-    return clientOrderId;
+  public String getClientId() {
+    return clientId;
   }
 
-  public void setClientOrderId(String clientOrderId) {
-    this.clientOrderId = clientOrderId;
+  public void setClientId(String clientId) {
+    this.clientId = clientId;
   }
 
-  public String getPrice() {
-    return price;
+  public Long getbOrderId() {
+    return bOrderId;
   }
 
-  public void setPrice(String price) {
-    this.price = price;
+  public void setbOrderId(Long bOrderId) {
+    this.bOrderId = bOrderId;
   }
 
-  public String getOrigQty() {
-    return origQty;
+  public String getbClientId() {
+    return bClientId;
   }
 
-  public void setOrigQty(String origQty) {
-    this.origQty = origQty;
+  public void setbClientId(String bClientId) {
+    this.bClientId = bClientId;
   }
 
-  public String getExecutedQty() {
-    return executedQty;
+  public String getbOrderListId() {
+    return bOrderListId;
   }
 
-  public void setExecutedQty(String executedQty) {
-    this.executedQty = executedQty;
+  public void setbOrderListId(String bOrderListId) {
+    this.bOrderListId = bOrderListId;
   }
 
-  public OrderStatus getStatus() {
-    return status;
+  public String getSymbol() {
+    return symbol;
   }
 
-  public void setStatus(OrderStatus status) {
-    this.status = status;
+  public void setSymbol(String symbol) {
+    this.symbol = symbol;
   }
 
-  public TimeInForce getTimeInForce() {
-    return timeInForce;
+  public String getSymbolType() {
+    return symbolType;
   }
 
-  public void setTimeInForce(TimeInForce timeInForce) {
-    this.timeInForce = timeInForce;
+  public void setSymbolType(String symbolType) {
+    this.symbolType = symbolType;
   }
 
   public OrderType getType() {
@@ -186,60 +173,20 @@ public class Order {
     this.side = side;
   }
 
-  public String getStopPrice() {
-    return stopPrice;
+  public String getPrice() {
+    return price;
   }
 
-  public void setStopPrice(String stopPrice) {
-    this.stopPrice = stopPrice;
+  public void setPrice(String price) {
+    this.price = price;
   }
 
-  public String getStopLimitPrice() {
-    return stopLimitPrice;
+  public String getOrigQty() {
+    return origQty;
   }
 
-  public void setStopLimitPrice(String stopLimitPrice) {
-    this.stopLimitPrice = stopLimitPrice;
-  }
-
-  public String getIcebergQty() {
-    return icebergQty;
-  }
-
-  public void setIcebergQty(String icebergQty) {
-    this.icebergQty = icebergQty;
-  }
-
-  public long getTime() {
-    return time;
-  }
-
-  public void setTime(long time) {
-    this.time = time;
-  }
-
-  public String getCummulativeQuoteQty() {
-    return cummulativeQuoteQty;
-  }
-
-  public void setCummulativeQuoteQty(String cummulativeQuoteQty) {
-    this.cummulativeQuoteQty = cummulativeQuoteQty;
-  }
-
-  public long getUpdateTime() {
-    return updateTime;
-  }
-
-  public void setUpdateTime(long updateTime) {
-    this.updateTime = updateTime;
-  }
-
-  public boolean isWorking() {
-    return working;
-  }
-
-  public void setWorking(boolean working) {
-    this.working = working;
+  public void setOrigQty(String origQty) {
+    this.origQty = origQty;
   }
 
   public String getOrigQuoteOrderQty() {
@@ -250,27 +197,84 @@ public class Order {
     this.origQuoteOrderQty = origQuoteOrderQty;
   }
 
+  public String getExecutedQty() {
+    return executedQty;
+  }
+
+  public void setExecutedQty(String executedQty) {
+    this.executedQty = executedQty;
+  }
+
+  public String getExecutedQuoteQty() {
+    return executedQuoteQty;
+  }
+
+  public void setExecutedQuoteQty(String executedQuoteQty) {
+    this.executedQuoteQty = executedQuoteQty;
+  }
+
+  public TimeInForce getTimeInForce() {
+    return timeInForce;
+  }
+
+  public void setTimeInForce(TimeInForce timeInForce) {
+    this.timeInForce = timeInForce;
+  }
+
+  public String getStopPrice() {
+    return stopPrice;
+  }
+
+  public void setStopPrice(String stopPrice) {
+    this.stopPrice = stopPrice;
+  }
+
+  public String getIcebergQty() {
+    return icebergQty;
+  }
+
+  public void setIcebergQty(String icebergQty) {
+    this.icebergQty = icebergQty;
+  }
+
+  public OrderStatus getStatus() {
+    return status;
+  }
+
+  public void setStatus(OrderStatus status) {
+    this.status = status;
+  }
+
+  public long getCreateTime() {
+    return createTime;
+  }
+
+  public void setCreateTime(long createTime) {
+    this.createTime = createTime;
+  }
+
   @Override
   public String toString() {
-    return new ToStringBuilder(this, BinanceApiConstants.TO_STRING_BUILDER_STYLE)
-            .append("symbol", symbol)
-            .append("orderId", orderId)
-            .append("clientOrderId", clientOrderId)
-            .append("price", price)
-            .append("origQty", origQty)
-            .append("executedQty", executedQty)
-            .append("status", status)
-            .append("timeInForce", timeInForce)
-            .append("type", type)
-            .append("side", side)
-            .append("stopPrice", stopPrice)
-            .append("stopLimitPrice", stopLimitPrice)
-            .append("icebergQty", icebergQty)
-            .append("time", time)
-            .append("cummulativeQuoteQty", cummulativeQuoteQty)
-            .append("updateTime", updateTime)
-            .append("isWorking", working)
-            .append("origQuoteOrderQty", origQuoteOrderQty)
-            .toString();
+    return "Order{" +
+            "orderId=" + orderId +
+            ", clientId='" + clientId + '\'' +
+            ", bOrderId=" + bOrderId +
+            ", bClientId='" + bClientId + '\'' +
+            ", bOrderListId='" + bOrderListId + '\'' +
+            ", symbol='" + symbol + '\'' +
+            ", symbolType='" + symbolType + '\'' +
+            ", type=" + type +
+            ", side=" + side +
+            ", price='" + price + '\'' +
+            ", origQty='" + origQty + '\'' +
+            ", origQuoteOrderQty='" + origQuoteOrderQty + '\'' +
+            ", executedQty='" + executedQty + '\'' +
+            ", executedQuoteQty='" + executedQuoteQty + '\'' +
+            ", timeInForce=" + timeInForce +
+            ", stopPrice='" + stopPrice + '\'' +
+            ", icebergQty='" + icebergQty + '\'' +
+            ", status=" + status +
+            ", createTime=" + createTime +
+            '}';
   }
 }

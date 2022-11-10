@@ -17,6 +17,7 @@ import retrofit2.Call;
 import retrofit2.http.*;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Binance's REST API URL mappings and endpoint security configuration.
@@ -99,9 +100,9 @@ public interface BinanceApiService {
                             @Query("recvWindow") Long recvWindow, @Query("timestamp") Long timestamp);
 
     @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
-    @GET("/api/v3/order")
+    @GET("/open/v1/orders/detail")
     Call<Order> getOrderStatus(@Query("symbol") String symbol, @Query("orderId") Long orderId,
-                               @Query("origClientOrderId") String origClientOrderId, @Query("recvWindow") Long recvWindow,
+                               @Query("clientId") String origClientOrderId, @Query("recvWindow") Long recvWindow,
                                @Query("timestamp") Long timestamp);
 
     @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
@@ -111,7 +112,7 @@ public interface BinanceApiService {
                                           @Query("recvWindow") Long recvWindow, @Query("timestamp") Long timestamp);
 
     @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
-    @GET("/api/v3/openOrders")
+    @GET("/open/v1/orders")
     Call<List<Order>> getOpenOrders(@Query("symbol") String symbol, @Query("recvWindow") Long recvWindow, @Query("timestamp") Long timestamp);
 
     @Headers(BinanceApiConstants.ENDPOINT_SECURITY_TYPE_SIGNED_HEADER)
